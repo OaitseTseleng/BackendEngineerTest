@@ -15,8 +15,6 @@ public class BillController {
 	@Autowired
 	private BillView view; //Using Spring boot built in component to 
 	
-	private double total;
-	
 	//To calculate the bill due and return it
 	public Bill calculateBill(Bill bill){
 		List<Person> database = generatePersons();//generate a list of person objects
@@ -25,13 +23,13 @@ public class BillController {
 		double discount = getDiscount(bill, database);
 		
 		//get the total for the bill
-		total = 0;
-		total =  getTotal(bill) - discount; //get total and subtract the discount
+		double initialTotal =  getTotal(bill);
+		double total =  initialTotal  - discount; //get total and subtract the discount
 		
 		//set the total and discount for objeCt Bill to be returned to user
 		bill.setDiscount(discount);
 		bill.setTotal(total);
-		
+		bill.setInitialTotal(initialTotal);
 		return bill;
 	}
 	
@@ -62,7 +60,7 @@ public class BillController {
 		double discountableTotal = getDiscountableTotal(bill); 
 		double discount = 0.0;
 		//get the total bill
-		total = getTotal(bill);
+		double total = getTotal(bill);
 		
 		//get the type of person
 		Person person = getPerson(bill.getPersonId(), list);
@@ -91,6 +89,8 @@ public class BillController {
 	
 	//To get the the total of all products
 	public double getTotal(Bill bill){
+		double total = 0;
+		
 		for(int i = 0; i< bill.getItems().length; i++) {
 			total += (bill.getItems()[i].getPrice() * (double)bill.getItems()[i].getQuantity());
 		}

@@ -14,6 +14,7 @@ public class Bill {
 	private int personId;
 	private double discount;
 	private Items[] items;
+	private double initialTotal;
 	private double total;
 
 	public Bill(int personId, Items [] list) {
@@ -22,6 +23,7 @@ public class Bill {
 		this.items = list;
 		this.discount = 0;
 		this.total = 0;
+		this.initialTotal = 0;
 	}
 
 	public Bill() {
@@ -59,4 +61,14 @@ public class Bill {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+
+	public double getInitialTotal() {
+		return initialTotal;
+	}
+
+	public void setInitialTotal(double initialTotal) {
+		this.initialTotal = initialTotal;
+	}
+	
+	
 }

@@ -17,14 +17,6 @@ public class Person {
 	private String name;
 	private String type;
 	private int years;
-	
-	public int getYears() {
-		return years;
-	}
-
-	public void setYears(int years) {
-		this.years = years;
-	}
 
 	public Person(int personId, String name, String type, int years) {
 		super();
@@ -63,6 +55,14 @@ public class Person {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
 	}
 	
 }
